@@ -22,6 +22,12 @@ services:
     build:
       context: ./requirements/wordpress
     container_name: wordpress
+    environment:
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_HOST: ${DB_HOST}
+    secrets:
+      - db_password
     restart: always
     volumes:
       - wordpress_data:/var/www/html

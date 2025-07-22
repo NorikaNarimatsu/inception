@@ -6,7 +6,7 @@
 #    By: nnarimatsu <nnarimatsu@student.codam.nl      +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/07/22 10:42:09 by nnarimatsu    #+#    #+#                  #
-#    Updated: 2025/07/22 12:38:13 by nnarimatsu    ########   odam.nl          #
+#    Updated: 2025/07/22 18:35:31 by nnarimatsu    ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,6 @@ RUN chmod +x /setup_db.sh
 EXPOSE 3306
 # mariadb's default port
 
-CMD ["/setup_db.sh"]
+ENTRYPOINT ["/setup_db.sh"]
 # "mysqld_safe" -> script that starts the real MariaDB server 
 # "--datadir=/var/lib/mysql" -> path to db, volumues

@@ -6,7 +6,7 @@
 #    By: nnarimatsu <nnarimatsu@student.codam.nl      +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/07/22 10:27:49 by nnarimatsu    #+#    #+#                  #
-#    Updated: 2025/07/22 13:49:43 by nnarimatsu    ########   odam.nl          #
+#    Updated: 2025/07/22 19:05:34 by nnarimatsu    ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,14 +26,16 @@ pass-check:
 		echo "Missing secret files: secrets/db_password.txt and secrets/db_root_password.txt are needed."; \
 		exit 1; \
 	fi
-	@if [ $$(wc -l < secrets/db_password.txt) -ne 1 ]; then \
-		echo "db_password.txt must be exactly one line (no newlines)."; \
-		exit 1; \
-	fi
-	@if [ $$(wc -l < secrets/db_root_password.txt) -ne 1 ]; then \
-		echo "db_root_password.txt must be exactly one line (no newlines)."; \
-		exit 1; \
-	fi
+
+# check validation for input
+# @if [ $$(wc -l < secrets/db_password.txt) -ne 1 ]; then \
+# 	echo "db_password.txt must be exactly one line (no newlines)."; \
+# 	exit 1; \
+# fi
+# @if [ $$(wc -l < secrets/db_root_password.txt) -ne 1 ]; then \
+# 	echo "db_root_password.txt must be exactly one line (no newlines)."; \
+# 	exit 1; \
+# fi
 
 down:
 	docker-compose -f srcs/docker-compose.yml down

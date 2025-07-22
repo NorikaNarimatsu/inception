@@ -27,3 +27,26 @@ COMMAND:
 
 docker volume ls
 docker volume inspect mariadb_data
+
+docker exec -it mariadb bash
+docker exec -it wordpress bash
+
+
+#!/bin/bash
+
+set -e
+
+# Create wp-config.php from sample
+cp /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
+
+sed -i "s/database_name_here/${DB_NAME}/" /var/www/html/wp-config.php
+sed -i "s/username_here/${DB_USER}/" /var/www/html/wp-config.php
+sed -i "s/password_here/$(cat /run/secrets/db_password)/" /var/www/html/wp-config.php
+sed -i "s/localhost/${DB_HOST}/" /var/www/html/wp-config.php
+
+exec sleep infinity
+
+
+COPY tools/setup_wp.sh /setup_wp.sh
+RUN chmod +x /setup_wp.sh
+CMD ["/setup_wp.sh"]
