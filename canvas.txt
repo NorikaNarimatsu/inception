@@ -1,0 +1,5 @@
+Containers vs Images
+instace vs class
+Images: Think of an image like a blueprint, recipe, or a class in programming.
+Containers: A container is a running instance of an image—like an object created from a class.
+
