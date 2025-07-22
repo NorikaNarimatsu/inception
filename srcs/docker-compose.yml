@@ -1,10 +1,17 @@
-version: '3.8'
+# version: '3.8'
 
 services:
   mariadb:
     build:
       context: ./requirements/mariadb
     container_name: mariadb
+    environment:
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_ADMIN: ${DB_ADMIN}
+    secrets:
+      - db_password
+      - db_root_password
     restart: always
     volumes: 
       - mariadb_data:/var/lib/mysql
@@ -17,7 +24,7 @@ services:
     container_name: wordpress
     restart: always
     volumes:
-      - mariadb_data:/var/www/html
+      - wordpress_data:/var/www/html
     networks:
     - inception
   
@@ -35,7 +42,14 @@ volumes:
 
 networks:
   inception:
-    driver: bridge
+    driver: bridge #bridge bridge network is the default network type for containers on a single Docker host (this computer).
+
+secrets:
+  db_password:
+    file: ../secrets/db_password.txt
+  db_root_password:
+    file: ../secrets/db_root_password.txt
+
 
 # structure of the docker-compse.yml
 # There are 3 service blocks: mariadb, wordpress and nginx

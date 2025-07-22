@@ -9,3 +9,38 @@ Config file that lets you define and run multiple containers as one unit.
     1. Builds 3 images (one per service) from your custom Dockerfiles
     2. Creates and runs 3 containers
     3. Makes sure they auto-restart if they fail
+
+Order of Makefile
+- Reads the `Dockerfile`
+- Pulls the base image (`debian:bullseye`)
+- Packages up your instructions (in this case: `CMD [”sleep”, “infinity”]`)
+- Outputs a new image (e.g., `srcs-mariadb`, `srcs-nginx`, etc.)
+
+COMMAND:
+- docker ps 
+-> to Lists all running containers.
+- docker ps -a 
+-> to Lists all containers, including stopped ones, with their status (exited/running).
+
+- docker network ls
+- docker network inspect inception
+
+docker volume ls
+docker volume inspect mariadb_data
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
