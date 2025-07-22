@@ -5,6 +5,12 @@
 set -e # stop at error
 set -x # print command
 
+echo "[mysqld]" > /etc/mysql/mariadb.cnf
+echo "bind-address = 0.0.0.0" >> /etc/mysql/mariadb.cnf
+# my.cnf is main config gile for mariadb
+# When running the MariaDB server, listen to all interface
+# To check this, docker exec -it mariadb bash -> cat /etc/mysql/my.cnf
+
 mysqld_safe --datadir=/var/lib/mysql &
 # '&' is important: Runs it in the background, so the script can continue to the next steps
 

@@ -27,20 +27,3 @@ COMMAND:
 
 docker volume ls
 docker volume inspect mariadb_data
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
