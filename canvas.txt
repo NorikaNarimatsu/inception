@@ -3,3 +3,9 @@ instace vs class
 Images: Think of an image like a blueprint, recipe, or a class in programming.
 Containers: A container is a running instance of an image—like an object created from a class.
 
+Docker-compose.yml?
+Config file that lets you define and run multiple containers as one unit.
+-> docker-compose up -d --build in Makefile will do:
+    1. Builds 3 images (one per service) from your custom Dockerfiles
+    2. Creates and runs 3 containers
+    3. Makes sure they auto-restart if they fail

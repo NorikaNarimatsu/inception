@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  mariadb:
+    build:
+      context: ./requirements/mariadb
+    container_name: mariadb
+    restart: always
+    volumes: 
+      - mariadb_data:/var/lib/mysql
+    networks:
+    - inception
+  
+  wordpress:
+    build:
+      context: ./requirements/wordpress
+    container_name: wordpress
+    restart: always
+    volumes:
+      - mariadb_data:/var/www/html
+    networks:
+    - inception
+  
+  nginx:
+    build:
+      context: ./requirements/nginx
+    container_name: nginx
+    restart: always
+    networks:
+    - inception
+
+volumes:
+  mariadb_data: # just declare named volume for mariadb
+  wordpress_data: 
+
+networks:
+  inception:
+    driver: bridge
+
+# structure of the docker-compse.yml
+# There are 3 service blocks: mariadb, wordpress and nginx
+# In each service block, we have to set the name and the location of Dockerfile
+# restart makes sure that the container autonatically restarts if it crashes or reboots.
+
+# Network:A Docker network lets containers talk to each other by nam
+# -> No network means containers are isolated and can't find each other 
+# Volume: A volume is persistent storage used by a container.
+# -> No volume means the loss of data when the continer stops 
+# -> list only volume names (not path) under top-level volumes
+# -> volumes in service should be listed "-" 
