@@ -6,7 +6,7 @@
 #    By: nnarimatsu <nnarimatsu@student.codam.nl      +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/07/22 10:43:14 by nnarimatsu    #+#    #+#                  #
-#    Updated: 2025/07/22 19:23:42 by nnarimatsu    ########   odam.nl          #
+#    Updated: 2025/07/22 23:22:06 by nnarimatsu    ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ RUN mkdir -p /run/php
 RUN	curl -O https://wordpress.org/latest.tar.gz && \
 	tar -xvzf latest.tar.gz && \
 	mkdir -p /var/www/html && \
-	cp -r wordpress/* /var/www/html/ && \
+	mv wordpress /wordpress-src  && \
 	rm -rf wordpress latest.tar.gz
 #download wordpress compressed file, unpack, make directry, move the content & delete original file
 

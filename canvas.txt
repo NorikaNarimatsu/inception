@@ -26,27 +26,22 @@ COMMAND:
 - docker network inspect inception
 
 docker volume ls
-docker volume inspect mariadb_data
+docker volume inspect 
 
 docker exec -it mariadb bash
 docker exec -it wordpress bash
 
-
-#!/bin/bash
-
-set -e
-
-# Create wp-config.php from sample
-cp /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
-
-sed -i "s/database_name_here/${DB_NAME}/" /var/www/html/wp-config.php
-sed -i "s/username_here/${DB_USER}/" /var/www/html/wp-config.php
-sed -i "s/password_here/$(cat /run/secrets/db_password)/" /var/www/html/wp-config.php
-sed -i "s/localhost/${DB_HOST}/" /var/www/html/wp-config.php
-
-exec sleep infinity
+apt update && apt install -y curl procps
 
 
-COPY tools/setup_wp.sh /setup_wp.sh
-RUN chmod +x /setup_wp.sh
-CMD ["/setup_wp.sh"]
+
+//check
+docker ps
+https://localhost
+https://localhost/wp-admin/site-editor.php
+
+curl -vk https://localhost
+-> HTTP/1.1 200 OK
+
+
+template secrets file

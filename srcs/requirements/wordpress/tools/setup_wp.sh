@@ -3,6 +3,10 @@
 set -e # stop at error
 set -x # print command
 
+if [ ! -f /var/www/html/index.php ]; then
+    cp -a /wordpress-src/. /var/www/html/
+fi
+
 # Create wp-config.php from sample
 cp /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
 
