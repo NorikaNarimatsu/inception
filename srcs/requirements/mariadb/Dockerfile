@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                         ::::::::             #
-#    Dockerfile                                         :+:    :+:             #
-#                                                      +:+                     #
-#    By: nnarimatsu <nnarimatsu@student.codam.nl      +#+                      #
-#                                                    +#+                       #
-#    Created: 2025/07/22 10:42:09 by nnarimatsu    #+#    #+#                  #
-#    Updated: 2025/07/22 18:35:31 by nnarimatsu    ########   odam.nl          #
+#                                                         :::      ::::::::    #
+#    Dockerfile                                         :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: nnarimat <nnarimat@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/07/22 10:42:09 by nnarimatsu        #+#    #+#              #
+#    Updated: 2025/07/28 10:23:37 by nnarimat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ FROM debian:bullseye
 
 RUN apt update && apt upgrade -y && \
     apt install -y mariadb-server && \
+    apt clean && \
     rm -rf /var/lib/apt/lists/*
     # delete metadata from apt update
 

@@ -24,8 +24,12 @@ services:
       DB_NAME: ${DB_NAME}
       DB_USER: ${DB_USER}
       DB_HOST: ${DB_HOST}
+      DB_ADMIN_EMAIL: ${DB_ADMIN_EMAIL}
+      DB_ADMIN: ${DB_ADMIN}
+      DB_USER_EMAIL: ${DB_ADMIN_EMAIL}
     secrets:
       - db_password
+      - db_root_password
     restart: always
     volumes:
       - wordpress_data:/var/www/html
@@ -42,7 +46,8 @@ services:
     networks:
       - inception
     ports:
-      - "443:443"
+      - "8443:8443"
+      # - "8080:80"
 
 volumes:
   mariadb_data: # just declare named volume for mariadb

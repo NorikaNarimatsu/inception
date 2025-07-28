@@ -1,6 +1,8 @@
 #! /bin/bash 
 # Use Bash to interpret this script”
 
+DB_HOST=localhost
+
 # We can check the executions: docker logs mariadb
 set -e # stop at error
 set -x # print command
@@ -14,12 +16,14 @@ echo "bind-address = 0.0.0.0" >> /etc/mysql/mariadb.cnf
 mysqld_safe --datadir=/var/lib/mysql &
 # '&' is important: Runs it in the background, so the script can continue to the next steps
 
-until mariadb -u root -e "SELECT 1;" &>/dev/null; do sleep 1
+echo "[SETUP] Waiting for MariaDB to be ready..."
+until mariadb -u root -e "SELECT 1;" &>/dev/null; do
+	sleep 1
 done
+
 # Keeps trying every second until the query succeeds
 # mariadb -u root -e "SELECT 1 -> Query Check
 # &>/dev/null -> suppress stdout and stderr to avoid spam in console
-
 
 DB_PASS=$(cat /run/secrets/db_password)
 DB_ADMIN_PASS=$(cat /run/secrets/db_root_password)
